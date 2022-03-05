@@ -25,13 +25,9 @@
         "prettier"
     ],
     "rules": {
-        "cypress/no-assigning-return-values": "error",
-        "cypress/no-unnecessary-waiting": "error",
-        "cypress/assertion-before-screenshot": "warn",
-        "cypress/no-force": "warn",
-        "cypress/no-async-tests": "error",
-        "cypress/no-pause": "error",
-        "chai-friendly/no-unused-expressions": 2,
+        "no-param-reassign": ["error", { "props": false }],
+        "global-require": "off",
+        "react/no-unstable-nested-components": ["error",{ "allowAsProps": true  }],
         "no-unused-vars": ["warn"],
         "no-unused-expressions": ["off"],
         "react/require-default-props": ["off"],
@@ -57,8 +53,8 @@
         "max-len": ["error", { "code": 100 }],
         "react-hooks/rules-of-hooks": "error",
         "react-hooks/exhaustive-deps": "error",
-        "react/jsx-indent": ["error", 2],
-        "react/jsx-indent-props": ["error", 2],
+        "react/jsx-indent": ["error", 4],
+        "react/jsx-indent-props": ["error", 4],
         "linebreak-style": 0,
         "id-length": [
             2,

@@ -1,7 +1,7 @@
 interface IPokemon {
-  id: number;
-  name: string;
-  favorite?: boolean;
+    id: number;
+    name: string;
+    favorite?: boolean;
 }
 
 export default IPokemon;

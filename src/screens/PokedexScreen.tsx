@@ -8,7 +8,7 @@ const PokedexScreen = () => {
 
     return (
         <SafeAreaView style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-            <Text>{JSON.stringify(pokemons, loading, error)}</Text>
+            <Text>{JSON.stringify(pokemons)}</Text>
             <Text>Home Screen</Text>
         </SafeAreaView>
     );

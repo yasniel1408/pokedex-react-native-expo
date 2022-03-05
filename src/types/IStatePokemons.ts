@@ -1,9 +1,9 @@
-import IPokemon from "./IPokemon";
+import IPokemon from './IPokemon';
 
 interface IStatePokemons {
-  pokemons: IPokemon[];
-  loading: Boolean;
-  error: string;
+    pokemons: IPokemon[];
+    loading: Boolean;
+    error: string;
 }
 
 export default IStatePokemons;

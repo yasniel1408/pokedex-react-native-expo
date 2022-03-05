@@ -1,1 +1,1 @@
-export { default as IPokemon } from "./IPokemon";
+export { default as IPokemon } from './IPokemon';
