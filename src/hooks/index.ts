@@ -1,1 +1,1 @@
-export { default as useGetPokemons } from "./useGetPokemons";
+export { default as useGetPokemons } from './useGetPokemons';

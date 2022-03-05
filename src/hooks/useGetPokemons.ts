@@ -1,7 +1,7 @@
-import { fetchPokemons } from './../redux/slices/pokemonSlice';
 import { useSelector } from 'react-redux';
-import IStatePokemons from '../types/IStatePokemons';
 import { useEffect } from 'react';
+import { fetchPokemons } from '../redux/slices/pokemonSlice';
+import IStatePokemons from '../types/IStatePokemons';
 
 const useGetPokemons = () => {
     const { pokemons, loading, error }: IStatePokemons = useSelector(
