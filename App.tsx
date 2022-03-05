@@ -1,7 +1,7 @@
 import React from "react";
 import { StatusBar } from "expo-status-bar";
-import MainStackNavigation from "./src/navigations/MainStackNavigation";
 import { NavigationContainer } from "@react-navigation/native";
+import { MainStackNavigation } from "./src/navigations";
 
 export default function App() {
   return (
