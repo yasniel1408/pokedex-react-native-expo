@@ -17,8 +17,6 @@
         "sourceType": "module"
     },
     "plugins": [
-        "cypress",
-        "chai-friendly",
         "react",
         "@typescript-eslint",
         "jsx-a11y",
