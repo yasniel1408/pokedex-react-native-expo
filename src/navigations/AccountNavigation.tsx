@@ -10,7 +10,7 @@ const AccountNavigation = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="Account"
+        name="AccountNavigator"
         component={AccountScreen}
         options={{
           title: "My Account",
