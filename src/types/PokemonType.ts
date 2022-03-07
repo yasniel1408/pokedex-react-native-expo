@@ -1,7 +1,7 @@
-interface IPokemon {
+interface PokemonType {
     id: number;
     name: string;
     favorite?: boolean;
 }
 
-export default IPokemon;
+export default PokemonType;

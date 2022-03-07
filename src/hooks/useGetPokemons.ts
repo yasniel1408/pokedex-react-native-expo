@@ -1,15 +1,15 @@
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { fetchPokemons } from '../redux/slices/pokemonSlice';
-import IStatePokemons from '../types/IStatePokemons';
+import { getPokemonsWithDetails } from '../redux/pokemon/pokemonSlice';
+import PokemonInitialStateType from '../types/PokemonInitialStateType';
 
 const useGetPokemons = () => {
-    const { pokemons, loading, error }: IStatePokemons = useSelector(
-        (state: any) => state.pokemonReducer,
+    const { pokemons, loading, error }: PokemonInitialStateType = useSelector(
+        ({ pokemon }: { pokemon: PokemonInitialStateType }) => pokemon,
     );
 
     useEffect(() => {
-        fetchPokemons();
+        getPokemonsWithDetails();
     }, []);
 
     return { pokemons, loading, error };

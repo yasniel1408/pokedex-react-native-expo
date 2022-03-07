@@ -1,1 +1,3 @@
-export { default as IPokemon } from './IPokemon';
+export { default as PokemonType } from './PokemonType';
+export { default as PokemonInitialStateType } from './PokemonInitialStateType';
+export { default as ThunkAPIType } from './ThunkAPIType';

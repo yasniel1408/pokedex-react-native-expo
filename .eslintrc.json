@@ -25,6 +25,7 @@
         "prettier"
     ],
     "rules": {
+        "react/style-prop-object": "off",
         "no-param-reassign": ["error", { "props": false }],
         "global-require": "off",
         "react/no-unstable-nested-components": ["error",{ "allowAsProps": true  }],
