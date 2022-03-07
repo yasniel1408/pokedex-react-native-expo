@@ -1,3 +1,4 @@
+import { PokemonType } from '../types';
 import axiosInstance, { API } from './conf';
 
 const getPokemons = (limit = 100, page = 0) => {
@@ -11,8 +12,9 @@ export const getPokemonsWithDetailsAPI = async (): Promise<any[]> => {
     } = await getPokemons();
 
     const result = await Promise.all(results.map((pokemon: any) => axiosInstance.get(pokemon.url)));
+    console.log(result);
     return result
-        .map((pokemon: any) => pokemon.data)
+        .map((pokemon: PokemonType) => pokemon.data)
         .map((value: any) => {
             return {
                 ...value,

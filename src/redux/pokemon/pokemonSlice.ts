@@ -1,22 +1,33 @@
-import { createAsyncThunk, createSlice, PayloadAction, Slice } from '@reduxjs/toolkit';
+/* eslint-disable max-len */
+import { AsyncThunk, createAsyncThunk, createSlice, PayloadAction, Slice } from '@reduxjs/toolkit';
 import { getPokemonsWithDetailsAPI } from '../../api/pokemonsApi';
-import { PokemonInitialStateType, PokemonType, ThunkAPIType } from '../../types';
+import { ThunkAPIType } from '../../types';
 
-const initialState: PokemonInitialStateType = {
-    pokemons: [],
-    loading: false,
-    error: '',
-};
+export const getPokemonsWithDetails: AsyncThunk<any[], void, {}> = createAsyncThunk(
+    'pokemon/getPokemonsWithDetails',
+    async (_, { rejectWithValue }: ThunkAPIType) => {
+        try {
+            const pokemonsWithDetails: any[] = await getPokemonsWithDetailsAPI();
+            return pokemonsWithDetails;
+        } catch (error: any) {
+            return rejectWithValue(error.response.data);
+        }
+    },
+);
 
 export const pokemonSlice: Slice = createSlice({
     name: 'pokemon',
-    initialState,
+    initialState: {
+        pokemons: [],
+        loading: false,
+        error: '',
+    },
     reducers: {
-        setPokemons: (state, action: PayloadAction<Array<PokemonType>>) => {
+        setPokemons: (state, action: PayloadAction<any[]>) => {
             state.pokemons = action.payload;
         },
         setFavorite: (state, action: PayloadAction<number>) => {
-            const newArrPokes: PokemonType[] = state.pokemons;
+            const newArrPokes: any[] = state.pokemons;
             const index = newArrPokes.findIndex(({ id }: { id: number }) => id === action.payload);
             if (index >= 0) {
                 newArrPokes[index].favorite = !newArrPokes[index].favorite;
@@ -37,21 +48,5 @@ export const pokemonSlice: Slice = createSlice({
 const { actions, reducer } = pokemonSlice;
 
 export const { setPokemons, setFavorite, setError, clearError, toggleLoading } = actions;
-
-export const getPokemonsWithDetails = createAsyncThunk(
-    'pokemon/getPokemonsWithDetails',
-    async (_, { dispatch }: ThunkAPIType) => {
-        try {
-            console.log('OKOKOOKOKOK');
-            dispatch(toggleLoading(null));
-            const pokemonsWithDetails = await getPokemonsWithDetailsAPI();
-            dispatch(setPokemons(pokemonsWithDetails));
-            dispatch(toggleLoading(null));
-        } catch (err) {
-            dispatch(setError({ error: err, message: 'Error fetching pokemons' }));
-            dispatch(toggleLoading(null));
-        }
-    },
-);
 
 export default reducer;
