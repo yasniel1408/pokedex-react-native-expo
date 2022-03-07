@@ -1,18 +1,20 @@
-/* eslint-disable max-len */
-import { AsyncThunk, createAsyncThunk, createSlice, PayloadAction, Slice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction, Slice } from '@reduxjs/toolkit';
+import { getPokemons } from '../../api/pokemonsApi';
 import { ThunkAPIType } from '../../types';
 
-// export const getPokemonsWithDetails: AsyncThunk<any[], void, {}> = createAsyncThunk(
-//     'pokemon/getPokemonsWithDetails',
-//     async (_, { rejectWithValue }: ThunkAPIType) => {
-//         try {
-//             const pokemonsWithDetails: any[] = await getPokemonsWithDetailsAPI();
-//             return pokemonsWithDetails;
-//         } catch (error: any) {
-//             return rejectWithValue(error.response.data);
-//         }
-//     },
-// );
+export const getPokemonsWithDetails = createAsyncThunk(
+    'pokemon/getPokemonsWithDetails',
+    async (_, { rejectWithValue, dispatch }: ThunkAPIType) => {
+        try {
+            dispatch(fetchPokemons(null));
+            const results = await getPokemons();
+            dispatch(setPokemons(results));
+        } catch (error: any) {
+            dispatch(setError(error.response.data));
+            rejectWithValue(error.response.data);
+        }
+    },
+);
 
 export const pokemonSlice: Slice = createSlice({
     name: 'pokemon',
@@ -22,8 +24,9 @@ export const pokemonSlice: Slice = createSlice({
         error: '',
     },
     reducers: {
-        fetchPokemons: (state, action: PayloadAction<any[]>) => {
+        fetchPokemons: (state) => {
             state.loading = true;
+            state.error = '';
         },
         setPokemons: (state, action: PayloadAction<any[]>) => {
             state.pokemons = action.payload;
@@ -39,18 +42,11 @@ export const pokemonSlice: Slice = createSlice({
         setError: (state, action: PayloadAction<any>) => {
             state.error = action.payload.message;
         },
-        clearError: (state) => {
-            state.error = '';
-        },
-        toggleLoading: (state) => {
-            state.loading = !state.loading;
-        },
     },
 });
 
 const { actions, reducer } = pokemonSlice;
 
-export const { fetchPokemons, setPokemons, setFavorite, setError, clearError, toggleLoading } =
-    actions;
+export const { fetchPokemons, setPokemons, setFavorite, setError } = actions;
 
 export default reducer;
