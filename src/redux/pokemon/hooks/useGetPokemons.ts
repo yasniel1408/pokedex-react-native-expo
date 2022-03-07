@@ -1,9 +1,10 @@
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { getPokemonsWithDetailsAPI } from '../../../api/pokemonsApi';
+import { getPokemons } from '../../../api/pokemonsApi';
+
 import { useAppDispatch } from './hooks';
 import { PokemonInitialStateType } from '../../../types';
-import { setPokemons, toggleLoading } from '../pokemonSlice';
+import { setPokemons, fetchPokemons } from '../pokemonSlice';
 
 const useGetPokemons = () => {
     const { pokemons, loading, error }: PokemonInitialStateType = useSelector(
@@ -13,11 +14,11 @@ const useGetPokemons = () => {
 
     useEffect(() => {
         const load = async () => {
-            dispatch(toggleLoading(null));
-            const pokemonsWithDetails: any[] = await getPokemonsWithDetailsAPI();
-            console.log(pokemonsWithDetails);
-            dispatch(setPokemons(pokemonsWithDetails));
-            dispatch(toggleLoading(null));
+            dispatch(fetchPokemons(null));
+            const {
+                data: { results },
+            } = await getPokemons();
+            dispatch(setPokemons(results));
         };
         load();
     }, [dispatch]);

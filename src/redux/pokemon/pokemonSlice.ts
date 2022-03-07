@@ -1,19 +1,18 @@
 /* eslint-disable max-len */
 import { AsyncThunk, createAsyncThunk, createSlice, PayloadAction, Slice } from '@reduxjs/toolkit';
-import { getPokemonsWithDetailsAPI } from '../../api/pokemonsApi';
 import { ThunkAPIType } from '../../types';
 
-export const getPokemonsWithDetails: AsyncThunk<any[], void, {}> = createAsyncThunk(
-    'pokemon/getPokemonsWithDetails',
-    async (_, { rejectWithValue }: ThunkAPIType) => {
-        try {
-            const pokemonsWithDetails: any[] = await getPokemonsWithDetailsAPI();
-            return pokemonsWithDetails;
-        } catch (error: any) {
-            return rejectWithValue(error.response.data);
-        }
-    },
-);
+// export const getPokemonsWithDetails: AsyncThunk<any[], void, {}> = createAsyncThunk(
+//     'pokemon/getPokemonsWithDetails',
+//     async (_, { rejectWithValue }: ThunkAPIType) => {
+//         try {
+//             const pokemonsWithDetails: any[] = await getPokemonsWithDetailsAPI();
+//             return pokemonsWithDetails;
+//         } catch (error: any) {
+//             return rejectWithValue(error.response.data);
+//         }
+//     },
+// );
 
 export const pokemonSlice: Slice = createSlice({
     name: 'pokemon',
@@ -23,8 +22,12 @@ export const pokemonSlice: Slice = createSlice({
         error: '',
     },
     reducers: {
+        fetchPokemons: (state, action: PayloadAction<any[]>) => {
+            state.loading = true;
+        },
         setPokemons: (state, action: PayloadAction<any[]>) => {
             state.pokemons = action.payload;
+            state.loading = false;
         },
         setFavorite: (state, action: PayloadAction<number>) => {
             const newArrPokes: any[] = state.pokemons;
@@ -47,6 +50,7 @@ export const pokemonSlice: Slice = createSlice({
 
 const { actions, reducer } = pokemonSlice;
 
-export const { setPokemons, setFavorite, setError, clearError, toggleLoading } = actions;
+export const { fetchPokemons, setPokemons, setFavorite, setError, clearError, toggleLoading } =
+    actions;
 
 export default reducer;

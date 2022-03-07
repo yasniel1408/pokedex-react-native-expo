@@ -1,24 +1,16 @@
-import { PokemonType } from '../types';
+/* eslint-disable max-len */
 import axiosInstance, { API } from './conf';
 
-const getPokemons = (limit = 100, page = 0) => {
-    const getPokeApi = axiosInstance.get(`${API}pokemon?limit=${limit}&offset=${page}`);
+export const getPokemons = async () => {
+    const getPokeApi = await axiosInstance.get(`${API}pokemon`);
     return getPokeApi;
 };
 
-export const getPokemonsWithDetailsAPI = async (): Promise<any[]> => {
-    const {
-        data: { results },
-    } = await getPokemons();
+// export const getPokemonsWithDetailsAPI = async () => {
+//     const {
+//         data: { results },
+//     } = await getPokemons();
 
-    const result = await Promise.all(results.map((pokemon: any) => axiosInstance.get(pokemon.url)));
-    console.log(result);
-    return result
-        .map((pokemon: PokemonType) => pokemon.data)
-        .map((value: any) => {
-            return {
-                ...value,
-                favorite: false,
-            };
-        });
-};
+//     const result = await Promise.all(results.map((pokemon: any) => axiosInstance.get(pokemon.url)));
+//     return result.map((pokemon: any) => pokemon.data);
+// };
