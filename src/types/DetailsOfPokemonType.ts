@@ -24,7 +24,6 @@ type DetailsOfPokemonType = {
     weight: number;
     past_types: any[];
     favorite?: boolean;
-    data?: any;
 };
 
 export default DetailsOfPokemonType;

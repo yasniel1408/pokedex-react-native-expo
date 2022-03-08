@@ -1,8 +1,8 @@
-import { PokemonType } from '../types';
+import { DetailsOfPokemonType, PokemonType } from '../types';
 import axiosInstance, { API } from './conf';
 
 export const getPokemonsAPI = async ({
-    limit = 100,
+    limit = 10,
     page = 0,
 }: {
     limit?: number;
@@ -14,18 +14,11 @@ export const getPokemonsAPI = async ({
     return results;
 };
 
-export const getPokemonDetailsByUrlAPI = async (url: string) => {
-    const {
-        data: { results },
-    } = await axiosInstance.get(url);
-
-    const result = await Promise.all(results.map((pokemon: any) => axiosInstance.get(pokemon.url)));
-    return result
-        .map((pokemon: any) => pokemon.data)
-        .map((value: any) => {
-            return {
-                ...value,
-                favorite: false,
-            };
-        });
+export const getPokemonDetailsByUrlAPI = async ({
+    url,
+}: {
+    url: string;
+}): Promise<DetailsOfPokemonType[]> => {
+    const { data } = await axiosInstance.get(url);
+    return data;
 };
