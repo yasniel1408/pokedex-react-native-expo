@@ -1,13 +1,13 @@
-import { createAsyncThunk, createSlice, PayloadAction, Slice } from '@reduxjs/toolkit';
-import { getPokemons } from '../../api/pokemonsApi';
-import { ThunkAPIType } from '../../types';
+import { AsyncThunk, createAsyncThunk, createSlice, PayloadAction, Slice } from '@reduxjs/toolkit';
+import { getPokemonsAPI } from '../../api/pokemonsApi';
+import { PokemonInitialStateType, PokemonType, ThunkAPIType } from '../../types';
 
-export const getPokemonsWithDetails = createAsyncThunk(
+export const getPokemonsWithDetails: AsyncThunk<any, ThunkAPIType, any> = createAsyncThunk(
     'pokemon/getPokemonsWithDetails',
     async (_, { rejectWithValue, dispatch }: ThunkAPIType) => {
         try {
             dispatch(fetchPokemons(null));
-            const results = await getPokemons();
+            const results: PokemonType[] = await getPokemonsAPI({});
             dispatch(setPokemons(results));
         } catch (error: any) {
             dispatch(setError(error.response.data));
@@ -24,22 +24,22 @@ export const pokemonSlice: Slice = createSlice({
         error: '',
     },
     reducers: {
-        fetchPokemons: (state) => {
+        fetchPokemons: (state: PokemonInitialStateType) => {
             state.loading = true;
             state.error = '';
         },
-        setPokemons: (state, action: PayloadAction<any[]>) => {
+        setPokemons: (state: PokemonInitialStateType, action: PayloadAction<any[]>) => {
             state.pokemons = action.payload;
             state.loading = false;
         },
-        setFavorite: (state, action: PayloadAction<number>) => {
+        setFavorite: (state: PokemonInitialStateType, action: PayloadAction<number>) => {
             const newArrPokes: any[] = state.pokemons;
             const index = newArrPokes.findIndex(({ id }: { id: number }) => id === action.payload);
             if (index >= 0) {
                 newArrPokes[index].favorite = !newArrPokes[index].favorite;
             }
         },
-        setError: (state, action: PayloadAction<any>) => {
+        setError: (state: PokemonInitialStateType, action: PayloadAction<any>) => {
             state.error = action.payload.message;
         },
     },
