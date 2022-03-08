@@ -16,7 +16,7 @@ export const getPokemonsWithDetails: AsyncThunk<any, ThunkAPIType, any> = create
             const pokemons: PokemonType[] = await getPokemonsAPI({});
             const results = pokemons.map(async ({ url }: { url: string }) => {
                 const data = await getPokemonDetailsByUrlAPI({ url });
-                return data;
+                return { ...data };
             });
             console.log(results);
             dispatch(setPokemons(results));
