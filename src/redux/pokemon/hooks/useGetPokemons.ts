@@ -9,7 +9,6 @@ const useGetPokemons = () => {
         ({ pokemon }: { pokemon: PokemonInitialStateType }) => pokemon,
     );
     const dispatch = useAppDispatch();
-
     useEffect(() => {
         dispatch(getPokemonsWithDetails());
     }, [dispatch]);
