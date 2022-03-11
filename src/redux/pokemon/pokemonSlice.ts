@@ -1,25 +1,15 @@
 import { AsyncThunk, createAsyncThunk, createSlice, PayloadAction, Slice } from '@reduxjs/toolkit';
-import { getPokemonDetailsByUrlAPI, getPokemonsAPI } from '../../api/pokemonsApi';
+import { getPokemonsAPI } from '../../api/pokemonsApi';
 
-import {
-    DetailsOfPokemonType,
-    PokemonInitialStateType,
-    PokemonType,
-    ThunkAPIType,
-} from '../../types';
+import { MyPokemonType, PokemonInitialStateType, ThunkAPIType } from '../../types';
 
 export const getPokemonsWithDetails: AsyncThunk<any, ThunkAPIType, any> = createAsyncThunk(
     'pokemon/getPokemonsWithDetails',
     async (_, { rejectWithValue, dispatch }: ThunkAPIType) => {
         try {
             dispatch(fetchPokemons(null));
-            const pokemons: PokemonType[] = await getPokemonsAPI({});
-            const results = pokemons.map(async ({ url }: { url: string }) => {
-                const data = await getPokemonDetailsByUrlAPI({ url });
-                return { ...data };
-            });
-            console.log(results);
-            dispatch(setPokemons(results));
+            const pokemons: MyPokemonType[] = await getPokemonsAPI({});
+            dispatch(setPokemons(pokemons));
         } catch (error: any) {
             dispatch(setError(error.response.data));
             rejectWithValue(error.response.data);

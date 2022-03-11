@@ -1,5 +1,9 @@
-import { DetailsOfPokemonType, PokemonType } from '../types';
+import { DetailsOfPokemonType, MyPokemonType } from '../types';
 import axiosInstance, { API } from './conf';
+
+export const getPokemonDetailsByUrlAPI = async ({ url }: { url: string }): Promise<any[]> => {
+    return axiosInstance.get(url);
+};
 
 export const getPokemonsAPI = async ({
     limit = 10,
@@ -7,18 +11,20 @@ export const getPokemonsAPI = async ({
 }: {
     limit?: number;
     page?: number;
-}): Promise<PokemonType[]> => {
+}): Promise<MyPokemonType[]> => {
     const {
         data: { results },
     } = await axiosInstance.get(`${API}pokemon?limit=${limit}&offset=${page}`);
-    return results;
-};
-
-export const getPokemonDetailsByUrlAPI = async ({
-    url,
-}: {
-    url: string;
-}): Promise<DetailsOfPokemonType[]> => {
-    const { data } = await axiosInstance.get(url);
-    return data;
+    const promises = results.map(({ url }: { url: string }) => getPokemonDetailsByUrlAPI({ url }));
+    const result: any[] = await Promise.all(promises);
+    const pokemonsArray: MyPokemonType[] = result.map(
+        ({ data }: { data: DetailsOfPokemonType }) => ({
+            id: data.id,
+            name: data.name,
+            type: data.types[0].type.name,
+            order: data.order,
+            img: data.sprites.other['official-artwork'].front_default,
+        }),
+    );
+    return pokemonsArray;
 };
