@@ -1,7 +1,12 @@
 import { createAsyncThunk, createSlice, PayloadAction, Slice } from '@reduxjs/toolkit';
-import { getPokemonsAPI } from '../../api/pokemonsApi';
+import { getPokemonByIdAPI, getPokemonsAPI } from '../../api/pokemonsApi';
 
-import { MyPokemonType, PokemonInitialStateType, ThunkAPIType } from '../../types';
+import {
+    DetailsOfPokemonType,
+    MyPokemonType,
+    PokemonInitialStateType,
+    ThunkAPIType,
+} from '../../types';
 
 export const getPokemonsWithDetails = createAsyncThunk(
     'pokemon/getPokemonsWithDetails',
@@ -32,10 +37,25 @@ export const getPokemonsWithDetails = createAsyncThunk(
     },
 );
 
+export const getPokemonById = createAsyncThunk(
+    'pokemon/getPokemonById',
+    async ({ id }: { id: number }, { rejectWithValue, dispatch }: ThunkAPIType) => {
+        try {
+            dispatch(fetchPokemons(null));
+            const pokemon: DetailsOfPokemonType = await getPokemonByIdAPI({ id });
+            dispatch(setCurrentPokemons(pokemon));
+        } catch (error: any) {
+            dispatch(setError(error.response.data));
+            rejectWithValue(error.response.data);
+        }
+    },
+);
+
 export const pokemonSlice: Slice = createSlice({
     name: 'pokemon',
     initialState: {
         pokemons: [],
+        currentPokemon: null,
         loading: false,
         error: '',
     },
@@ -46,6 +66,10 @@ export const pokemonSlice: Slice = createSlice({
         },
         setPokemons: (state: PokemonInitialStateType, action: PayloadAction<any[]>) => {
             state.pokemons = action.payload;
+            state.loading = false;
+        },
+        setCurrentPokemons: (state: PokemonInitialStateType, action: PayloadAction<any[]>) => {
+            state.currentPokemon = action.payload;
             state.loading = false;
         },
         setFavorite: (state: PokemonInitialStateType, action: PayloadAction<number>) => {
@@ -63,6 +87,6 @@ export const pokemonSlice: Slice = createSlice({
 
 const { actions, reducer } = pokemonSlice;
 
-export const { fetchPokemons, setPokemons, setFavorite, setError } = actions;
+export const { fetchPokemons, setPokemons, setCurrentPokemons, setFavorite, setError } = actions;
 
 export default reducer;

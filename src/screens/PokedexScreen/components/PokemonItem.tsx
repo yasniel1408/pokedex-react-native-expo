@@ -1,5 +1,6 @@
 import { Image, Text, TouchableWithoutFeedback, View } from 'react-native';
 import React from 'react';
+import { useNavigation } from '@react-navigation/native';
 import { MyPokemonType } from '../../../types';
 import styles from './styles';
 import getColorByPokemonType from '../../../utils/getColorByPokemonType';
@@ -8,9 +9,10 @@ const PokemonItem = ({ item }: { item: MyPokemonType }) => {
     const pokemonColor = getColorByPokemonType({ type: item.type });
     const bgStyles = { backgroundColor: pokemonColor, ...styles.bgStyles };
 
+    const navigation: any = useNavigation();
+
     const goToPokemon = () => {
-        console.log(`Vamos al pokemon: ${item.name}`);
-        console.log(item);
+        navigation.navigate('Pokemon', { id: item.id });
     };
 
     return (
