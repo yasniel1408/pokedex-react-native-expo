@@ -6,7 +6,7 @@ export const getPokemonDetailsByUrlAPI = async ({ url }: { url: string }): Promi
 };
 
 export const getPokemonsAPI = async ({
-    limit = 10,
+    limit = 100,
     page = 0,
 }: {
     limit?: number;

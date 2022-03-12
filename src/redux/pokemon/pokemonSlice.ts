@@ -1,9 +1,9 @@
-import { AsyncThunk, createAsyncThunk, createSlice, PayloadAction, Slice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction, Slice } from '@reduxjs/toolkit';
 import { getPokemonsAPI } from '../../api/pokemonsApi';
 
 import { MyPokemonType, PokemonInitialStateType, ThunkAPIType } from '../../types';
 
-export const getPokemonsWithDetails: AsyncThunk<any, ThunkAPIType, any> = createAsyncThunk(
+export const getPokemonsWithDetails = createAsyncThunk(
     'pokemon/getPokemonsWithDetails',
     async (_, { rejectWithValue, dispatch }: ThunkAPIType) => {
         try {

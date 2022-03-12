@@ -1,7 +1,7 @@
-import PokemonType from './DetailsOfPokemonType';
+import MyPokemonType from './MyPokemonType';
 
 type PokemonInitialStateType = {
-    pokemons: PokemonType[];
+    pokemons: MyPokemonType[];
     loading: Boolean;
     error: string;
 };
