@@ -2,8 +2,12 @@ import { Image, Text, TouchableWithoutFeedback, View } from 'react-native';
 import React from 'react';
 import { MyPokemonType } from '../../../types';
 import styles from './styles';
+import getColorByPokemonType from '../../../utils/getColorByPokemonType';
 
 const PokemonItem = ({ item }: { item: MyPokemonType }) => {
+    const pokemonColor = getColorByPokemonType({ type: item.type });
+    const bgStyles = { backgroundColor: pokemonColor, ...styles.bgStyles };
+
     const goToPokemon = () => {
         console.log(`Vamos al pokemon: ${item.name}`);
         console.log(item);
@@ -13,9 +17,12 @@ const PokemonItem = ({ item }: { item: MyPokemonType }) => {
         <TouchableWithoutFeedback onPress={goToPokemon}>
             <View style={styles.card}>
                 <View style={styles.spacing}>
-                    <View style={styles.bgStyles}>
+                    <View style={bgStyles}>
                         <Text style={styles.number}>#{`${item.order}`.padStart(3, '')}</Text>
-                        <Text style={styles.name}>{item.name}</Text>
+                        <Text style={styles.name}>
+                            {item.name.split('')[0].toUpperCase()}
+                            {item.name.substring(1)}
+                        </Text>
                         <Image source={{ uri: item.img }} style={styles.image} />
                     </View>
                 </View>

@@ -10,7 +10,9 @@ const styles = StyleSheet.create({
         padding: 5,
     },
     bgStyles: {
-        backgroundColor: 'grey',
+        flex: 1,
+        borderRadius: 15,
+        padding: 10,
     },
     number: {
         position: 'absolute',

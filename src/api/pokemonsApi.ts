@@ -6,15 +6,15 @@ export const getPokemonDetailsByUrlAPI = async ({ url }: { url: string }): Promi
 };
 
 export const getPokemonsAPI = async ({
-    limit = 100,
-    page = 0,
+    limit,
+    offset,
 }: {
     limit?: number;
-    page?: number;
+    offset?: number;
 }): Promise<MyPokemonType[]> => {
     const {
         data: { results },
-    } = await axiosInstance.get(`${API}pokemon?limit=${limit}&offset=${page}`);
+    } = await axiosInstance.get(`${API}pokemon?limit=${limit}&offset=${offset}`);
     const promises = results.map(({ url }: { url: string }) => getPokemonDetailsByUrlAPI({ url }));
     const result: any[] = await Promise.all(promises);
     const pokemonsArray: MyPokemonType[] = result.map(

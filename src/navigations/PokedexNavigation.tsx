@@ -13,14 +13,8 @@ const PokedexNavigation = () => {
                 name="PokedexNavigator"
                 component={PokedexScreen}
                 options={{
-                    title: 'Pokedex',
-                    headerStyle: {
-                        backgroundColor: colors.primary,
-                    },
-                    headerTintColor: colors.white,
-                    headerTitleStyle: {
-                        fontWeight: 'bold',
-                    },
+                    title: '',
+                    headerTransparent: true,
                 }}
             />
             <Stack.Screen

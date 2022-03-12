@@ -5,11 +5,26 @@ import { MyPokemonType, PokemonInitialStateType, ThunkAPIType } from '../../type
 
 export const getPokemonsWithDetails = createAsyncThunk(
     'pokemon/getPokemonsWithDetails',
-    async (_, { rejectWithValue, dispatch }: ThunkAPIType) => {
+    async (
+        {
+            limit,
+            offset,
+        }: {
+            limit?: number;
+            offset?: number;
+        },
+        { rejectWithValue, dispatch, getState }: ThunkAPIType,
+    ) => {
+        const {
+            pokemon: { pokemons },
+        } = getState();
         try {
             dispatch(fetchPokemons(null));
-            const pokemons: MyPokemonType[] = await getPokemonsAPI({});
-            dispatch(setPokemons(pokemons));
+            const newPokemons: MyPokemonType[] = await getPokemonsAPI({
+                limit,
+                offset,
+            });
+            dispatch(setPokemons([...pokemons, ...newPokemons]));
         } catch (error: any) {
             dispatch(setError(error.response.data));
             rejectWithValue(error.response.data);
