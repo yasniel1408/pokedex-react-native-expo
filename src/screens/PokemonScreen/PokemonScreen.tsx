@@ -6,6 +6,7 @@ import Loading from '../../components/Loading/Loading';
 import PokemonScreenHeader from './components/PokemonScreenHeader';
 import PokemonScreenType from './components/PokemonScreenType';
 import styles from './styles';
+import PokemonScreenStats from './components/PokemonScreenStats';
 
 const PokemonScreen = ({
     route: {
@@ -31,6 +32,7 @@ const PokemonScreen = ({
                 <View>
                     <PokemonScreenHeader />
                     <PokemonScreenType />
+                    <PokemonScreenStats />
                 </View>
             )}
         </ScrollView>

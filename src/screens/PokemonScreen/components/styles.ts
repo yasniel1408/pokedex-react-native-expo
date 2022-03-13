@@ -32,7 +32,8 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        top: 30,
+        top: -100,
+        height: 230,
     },
     image: {
         marginTop: 240,
@@ -52,6 +53,49 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         marginHorizontal: 10,
         margin: 2,
+    },
+    contentStats: {
+        paddingHorizontal: 20,
+        marginTop: 40,
+        marginBottom: 80,
+    },
+    title: {
+        fontWeight: 'bold',
+        fontSize: 20,
+        paddingBottom: 5,
+    },
+    block: {
+        flexDirection: 'row',
+        paddingVertical: 5,
+    },
+    blockTitle: {
+        width: '30%',
+    },
+    statName: {
+        fontSize: 12,
+        color: '#6b6b6b',
+    },
+    blockInfo: {
+        width: '70%',
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    number: {
+        width: '12%',
+        fontSize: 12,
+    },
+    bgBar: {
+        backgroundColor: '#dedede',
+        width: '88%',
+        height: 5,
+        borderRadius: 20,
+        overflow: 'hidden',
+    },
+    bar: {
+        // backgroundColor: "red",
+        // width: "40%",
+        height: 5,
+        borderRadius: 20,
     },
 });
 
