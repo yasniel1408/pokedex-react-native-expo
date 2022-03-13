@@ -7,8 +7,8 @@ const Loading = ({ loading, ...res }: { loading: Boolean }) => {
     if (!loading) return null;
 
     return (
-        <View style={styles.container}>
-            <ActivityIndicator size="large" color={colors.primary} {...res} />
+        <View style={styles.container} {...res}>
+            <ActivityIndicator size="large" color={colors.primary} />
         </View>
     );
 };

@@ -12,15 +12,15 @@ const PokemonScreenType = () => {
 
     return (
         <View style={styles.content}>
-            {types.map(types, (item: any, index: number) => (
+            {types?.map((item: any) => (
                 <View
-                    key={index}
+                    key={`${item.type.name}`}
                     style={{
                         ...styles.pill,
-                        backgroundColor: getColorByPokemonType(item.type.name),
+                        backgroundColor: getColorByPokemonType({ type: item.type.name }),
                     }}
                 >
-                    <Text>{capitalizeString(item.type.name)}</Text>
+                    <Text>{capitalizeString({ string: item.type.name })}</Text>
                 </View>
             ))}
         </View>

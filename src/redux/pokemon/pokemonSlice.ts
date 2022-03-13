@@ -50,13 +50,14 @@ export const pokemonSlice: Slice = createSlice({
     name: 'pokemon',
     initialState: {
         pokemons: [],
-        currentPokemon: {},
+        currentPokemon: null,
         loading: false,
         error: '',
     },
     reducers: {
         fetchPokemons: (state: PokemonInitialStateType) => {
             state.loading = true;
+            state.currentPokemon = null;
             state.error = '';
         },
         setPokemons: (state: PokemonInitialStateType, action: PayloadAction<any[]>) => {

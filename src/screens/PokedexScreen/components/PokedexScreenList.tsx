@@ -16,7 +16,7 @@ const PokedexScreenList = () => {
             keyExtractor={({ id }: { id: number }) => `${id}`}
             renderItem={({ item }: { item: MyPokemonType }) => <PokedexScreenItem item={item} />}
             contentContainerStyle={{ paddingHorizontal: 5 }}
-            onEndReached={loadMorePokemons}
+            onEndReached={() => loadMorePokemons()}
             onEndReachedThreshold={0.1}
             ListFooterComponent={<Loading loading={loading} />}
         />

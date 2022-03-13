@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import React from 'react';
 import { View, SafeAreaView, Text, Image } from 'react-native';
 import useGetPokemonById from '../../../redux/pokemon/hooks/useGetPokemonById';

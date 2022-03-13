@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { ScrollView, View } from 'react-native';
 import useGetPokemonById from '../../redux/pokemon/hooks/useGetPokemonById';
 import Error from '../../components/Error/Error';
 import Loading from '../../components/Loading/Loading';
 import PokemonScreenHeader from './components/PokemonScreenHeader';
 import PokemonScreenType from './components/PokemonScreenType';
+import styles from './styles';
 
 const PokemonScreen = ({
     route: {
@@ -13,24 +14,26 @@ const PokemonScreen = ({
 }: {
     route: any;
 }) => {
-    const { getPokemonById, loading, error } = useGetPokemonById();
+    const { getPokemonById, currentPokemon, loading, error } = useGetPokemonById();
 
     useEffect(() => {
         getPokemonById({ id });
     }, [getPokemonById, id]);
 
     return (
-        <SafeAreaView>
+        <ScrollView>
             <Error error={error} />
-            {loading ? (
-                <Loading loading={loading} />
+            {loading || !currentPokemon ? (
+                <View style={styles.loading}>
+                    <Loading loading={loading} />
+                </View>
             ) : (
-                <>
+                <View>
                     <PokemonScreenHeader />
                     <PokemonScreenType />
-                </>
+                </View>
             )}
-        </SafeAreaView>
+        </ScrollView>
     );
 };
 

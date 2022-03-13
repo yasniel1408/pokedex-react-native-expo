@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
     },
     content: {
         marginHorizontal: 20,
-        marginTop: 50,
+        marginTop: 70,
     },
     header: {
         flexDirection: 'row',
@@ -51,6 +51,7 @@ const styles = StyleSheet.create({
         paddingVertical: 5,
         borderRadius: 20,
         marginHorizontal: 10,
+        margin: 2,
     },
 });
 
