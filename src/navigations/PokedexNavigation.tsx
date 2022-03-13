@@ -1,8 +1,7 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { colors } from '../utils/colors';
 import { PokedexScreen } from '../screens';
-import PokemonScreen from '../screens/PokemonScreen';
+import PokemonScreen from '../screens/PokemonScreen/PokemonScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -21,14 +20,8 @@ const PokedexNavigation = () => {
                 name="Pokemon"
                 component={PokemonScreen}
                 options={{
-                    title: 'Pokemon',
-                    headerStyle: {
-                        backgroundColor: colors.primary,
-                    },
-                    headerTintColor: colors.white,
-                    headerTitleStyle: {
-                        fontWeight: 'bold',
-                    },
+                    title: '',
+                    headerTransparent: true,
                 }}
             />
         </Stack.Navigator>

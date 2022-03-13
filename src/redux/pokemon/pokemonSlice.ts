@@ -1,14 +1,9 @@
 import { createAsyncThunk, createSlice, PayloadAction, Slice } from '@reduxjs/toolkit';
 import { getPokemonByIdAPI, getPokemonsAPI } from '../../api/pokemonsApi';
 
-import {
-    DetailsOfPokemonType,
-    MyPokemonType,
-    PokemonInitialStateType,
-    ThunkAPIType,
-} from '../../types';
+import { MyPokemonType, PokemonInitialStateType, ThunkAPIType } from '../../types';
 
-export const getPokemonsWithDetails = createAsyncThunk(
+export const getPokemonsWithDetailsAction = createAsyncThunk(
     'pokemon/getPokemonsWithDetails',
     async (
         {
@@ -37,12 +32,12 @@ export const getPokemonsWithDetails = createAsyncThunk(
     },
 );
 
-export const getPokemonById = createAsyncThunk(
+export const getPokemonByIdAction = createAsyncThunk(
     'pokemon/getPokemonById',
     async ({ id }: { id: number }, { rejectWithValue, dispatch }: ThunkAPIType) => {
         try {
             dispatch(fetchPokemons(null));
-            const pokemon: DetailsOfPokemonType = await getPokemonByIdAPI({ id });
+            const pokemon: any = await getPokemonByIdAPI({ id });
             dispatch(setCurrentPokemons(pokemon));
         } catch (error: any) {
             dispatch(setError(error.response.data));
@@ -55,7 +50,7 @@ export const pokemonSlice: Slice = createSlice({
     name: 'pokemon',
     initialState: {
         pokemons: [],
-        currentPokemon: null,
+        currentPokemon: {},
         loading: false,
         error: '',
     },
@@ -73,11 +68,12 @@ export const pokemonSlice: Slice = createSlice({
             state.loading = false;
         },
         setFavorite: (state: PokemonInitialStateType, action: PayloadAction<number>) => {
-            const newArrPokes: any[] = state.pokemons;
-            const index = newArrPokes.findIndex(({ id }: { id: number }) => id === action.payload);
-            if (index >= 0) {
-                newArrPokes[index].favorite = !newArrPokes[index].favorite;
-            }
+            // const newArrPokes: any[] = state.pokemons;
+            // eslint-disable-next-line max-len
+            // const index = newArrPokes.findIndex(({ id }: { id: number }) => id === action.payload);
+            // if (index >= 0) {
+            //     newArrPokes[index].favorite = !newArrPokes[index].favorite;
+            // }
         },
         setError: (state: PokemonInitialStateType, action: PayloadAction<any>) => {
             state.error = action.payload.message;

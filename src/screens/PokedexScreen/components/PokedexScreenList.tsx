@@ -1,11 +1,11 @@
 import { FlatList, Platform, StyleSheet } from 'react-native';
 import React from 'react';
 import { MyPokemonType } from '../../../types';
-import PokemonItem from './PokemonItem';
+import PokedexScreenItem from './PokedexScreenItem';
 import { useGetPokemons } from '../../../redux/pokemon/hooks';
 import Loading from '../../../components/Loading/Loading';
 
-const PokemonList = () => {
+const PokedexScreenList = () => {
     const { loadMorePokemons, pokemons, loading } = useGetPokemons();
 
     return (
@@ -14,7 +14,7 @@ const PokemonList = () => {
             numColumns={2}
             showsVerticalScrollIndicator
             keyExtractor={({ id }: { id: number }) => `${id}`}
-            renderItem={({ item }: { item: MyPokemonType }) => <PokemonItem item={item} />}
+            renderItem={({ item }: { item: MyPokemonType }) => <PokedexScreenItem item={item} />}
             contentContainerStyle={{ paddingHorizontal: 5 }}
             onEndReached={loadMorePokemons}
             onEndReachedThreshold={0.1}
@@ -23,7 +23,7 @@ const PokemonList = () => {
     );
 };
 
-export default PokemonList;
+export default PokedexScreenList;
 
 const styles = StyleSheet.create({
     flatListContentContainer: {

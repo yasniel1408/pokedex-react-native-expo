@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { useAppDispatch } from './hooks';
 import { PokemonInitialStateType } from '../../../types';
-import { getPokemonsWithDetails } from '../pokemonSlice';
+import { getPokemonsWithDetailsAction } from '../pokemonSlice';
 
 const useGetPokemons = () => {
     const { pokemons, loading, error }: PokemonInitialStateType = useSelector(
@@ -13,7 +13,7 @@ const useGetPokemons = () => {
     const limit = 20;
 
     useEffect(() => {
-        dispatch(getPokemonsWithDetails({ limit, offset }));
+        dispatch(getPokemonsWithDetailsAction({ limit, offset }));
     }, [dispatch, limit, offset]);
 
     const loadMorePokemons = () => {

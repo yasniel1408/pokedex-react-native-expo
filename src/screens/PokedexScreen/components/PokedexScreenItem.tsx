@@ -4,8 +4,9 @@ import { useNavigation } from '@react-navigation/native';
 import { MyPokemonType } from '../../../types';
 import styles from './styles';
 import getColorByPokemonType from '../../../utils/getColorByPokemonType';
+import capitalizeString from '../../../utils/capitalize';
 
-const PokemonItem = ({ item }: { item: MyPokemonType }) => {
+const PokedexScreenItem = ({ item }: { item: MyPokemonType }) => {
     const pokemonColor = getColorByPokemonType({ type: item.type });
     const bgStyles = { backgroundColor: pokemonColor, ...styles.bgStyles };
 
@@ -21,10 +22,7 @@ const PokemonItem = ({ item }: { item: MyPokemonType }) => {
                 <View style={styles.spacing}>
                     <View style={bgStyles}>
                         <Text style={styles.number}>#{`${item.order}`.padStart(3, '')}</Text>
-                        <Text style={styles.name}>
-                            {item.name.split('')[0].toUpperCase()}
-                            {item.name.substring(1)}
-                        </Text>
+                        <Text style={styles.name}>{capitalizeString({ string: item.name })}</Text>
                         <Image source={{ uri: item.img }} style={styles.image} />
                     </View>
                 </View>
@@ -33,4 +31,4 @@ const PokemonItem = ({ item }: { item: MyPokemonType }) => {
     );
 };
 
-export default PokemonItem;
+export default PokedexScreenItem;

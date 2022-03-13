@@ -29,8 +29,7 @@ export const getPokemonsAPI = async ({
     return pokemonsArray;
 };
 
-export const getPokemonByIdAPI = async ({ id }: { id: number }): Promise<DetailsOfPokemonType> => {
+export const getPokemonByIdAPI = async ({ id }: { id: number }): Promise<any> => {
     const result = await axiosInstance.get(`${API}pokemon/${id}`);
-    console.log(result.data);
     return result.data;
 };

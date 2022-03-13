@@ -1,20 +1,23 @@
 import { useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { useCallback } from 'react';
 import { useAppDispatch } from './hooks';
 import { PokemonInitialStateType } from '../../../types';
-import { getPokemonById } from '../pokemonSlice';
+import { getPokemonByIdAction } from '../pokemonSlice';
 
-const useGetPokemonById = ({ id }: { id: number }) => {
+const useGetPokemonById = () => {
     const { currentPokemon, loading, error }: PokemonInitialStateType = useSelector(
         ({ pokemon }: { pokemon: PokemonInitialStateType }) => pokemon,
     );
     const dispatch = useAppDispatch();
 
-    useEffect(() => {
-        dispatch(getPokemonById({ id }));
-    }, [dispatch, id]);
+    const getPokemonById = useCallback(
+        ({ id }: { id?: number }) => {
+            id && dispatch(getPokemonByIdAction({ id }));
+        },
+        [dispatch],
+    );
 
-    return { currentPokemon, loading, error };
+    return { getPokemonById, currentPokemon, loading, error };
 };
 
 export default useGetPokemonById;
