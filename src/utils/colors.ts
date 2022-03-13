@@ -2,6 +2,8 @@ export const colors = {
     primary: '#f4511e',
     secondary: 'red',
     white: '#fff',
+    red: '#ff3e3e',
+    green: '#00ac17',
 };
 
 export const POKEMON_TYPE_COLORS: any = {

@@ -3,6 +3,7 @@ import React from 'react';
 import useGetPokemonById from '../../../redux/pokemon/hooks/useGetPokemonById';
 import capitalizeString from '../../../utils/capitalize';
 import styles from './styles';
+import { colors } from '../../../utils/colors';
 
 const PokemonScreenStats = () => {
     const {
@@ -10,7 +11,9 @@ const PokemonScreenStats = () => {
     } = useGetPokemonById();
 
     const barStyles = (num: number) => {
-        const color = num > 49 ? '#00ac17' : '#ff3e3e';
+        let color: string = colors.green;
+        if (num < 30) color = colors.red;
+        if (num > 30 && num < 85) color = colors.primary;
         return {
             backgroundColor: color,
             width: `${num}%`,
