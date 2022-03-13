@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react';
-import { ScrollView, View } from 'react-native';
+import { ScrollView, TouchableOpacity, View } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome5';
+import React, { useEffect, useLayoutEffect } from 'react';
 import useGetPokemonById from '../../redux/pokemon/hooks/useGetPokemonById';
 import Error from '../../components/Error/Error';
 import Loading from '../../components/Loading/Loading';
@@ -9,12 +10,29 @@ import styles from './styles';
 import PokemonScreenStats from './components/PokemonScreenStats';
 
 const PokemonScreen = ({
+    navigation,
     route: {
         params: { id },
     },
 }: {
+    navigation: any;
     route: any;
 }) => {
+    useLayoutEffect(() => {
+        navigation.setOptions({
+            headerRight: () => null,
+            headerLeft: () => (
+                <Icon
+                    name="arrow-left"
+                    color="#fff"
+                    size={20}
+                    style={{ marginLeft: 7 }}
+                    onPress={navigation.goBack}
+                />
+            ),
+        });
+    }, [navigation]);
+
     const { getPokemonById, currentPokemon, loading, error } = useGetPokemonById();
 
     useEffect(() => {
