@@ -4,6 +4,7 @@ import useGetPokemonById from '../../redux/pokemon/hooks/useGetPokemonById';
 import Error from '../../components/Error/Error';
 import Loading from '../../components/Loading/Loading';
 import PokemonScreenHeader from './components/PokemonScreenHeader';
+import PokemonScreenType from './components/PokemonScreenType';
 
 const PokemonScreen = ({
     route: {
@@ -21,8 +22,14 @@ const PokemonScreen = ({
     return (
         <SafeAreaView>
             <Error error={error} />
-            <Loading loading={loading} />
-            <PokemonScreenHeader />
+            {loading ? (
+                <Loading loading={loading} />
+            ) : (
+                <>
+                    <PokemonScreenHeader />
+                    <PokemonScreenType />
+                </>
+            )}
         </SafeAreaView>
     );
 };

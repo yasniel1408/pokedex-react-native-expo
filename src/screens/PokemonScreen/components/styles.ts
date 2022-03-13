@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
     },
     content: {
         marginHorizontal: 20,
-        marginTop: 2,
+        marginTop: 50,
     },
     header: {
         flexDirection: 'row',
@@ -39,6 +39,18 @@ const styles = StyleSheet.create({
         width: 260,
         height: 300,
         resizeMode: 'contain',
+    },
+    contentType: {
+        marginTop: 50,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    pill: {
+        paddingHorizontal: 30,
+        paddingVertical: 5,
+        borderRadius: 20,
+        marginHorizontal: 10,
     },
 });
 

@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React from 'react';
 import { View, SafeAreaView, Text, Image } from 'react-native';
 import useGetPokemonById from '../../../redux/pokemon/hooks/useGetPokemonById';
@@ -6,9 +7,7 @@ import getColorByPokemonType from '../../../utils/getColorByPokemonType';
 import styles from './styles';
 
 const PokemonScreenHeader = () => {
-    const { currentPokemon, loading } = useGetPokemonById();
-
-    if (!currentPokemon || loading) return null;
+    const { currentPokemon } = useGetPokemonById();
 
     const color = getColorByPokemonType({ type: currentPokemon?.types[0]?.type?.name });
 
