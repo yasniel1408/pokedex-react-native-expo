@@ -1,9 +1,9 @@
 import { View, ActivityIndicator } from 'react-native';
-import React from 'react';
+import React, { FC } from 'react';
 import styles from './styles';
 import { colors } from '../../utils/colors';
 
-const Loading = ({ loading, ...res }: { loading: Boolean }) => {
+const Loading: FC<{ loading: Boolean }> = ({ loading, ...res }: { loading: Boolean }) => {
     if (!loading) return null;
 
     return (

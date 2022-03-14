@@ -1,12 +1,12 @@
 import { Image, Text, TouchableWithoutFeedback, View } from 'react-native';
-import React from 'react';
+import React, { FC } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { MyPokemonType } from '../../../types';
 import styles from './styles';
 import getColorByPokemonType from '../../../utils/getColorByPokemonType';
 import capitalizeString from '../../../utils/capitalize';
 
-const PokedexScreenItem = ({ item }: { item: MyPokemonType }) => {
+const PokedexScreenItem: FC<{ item: MyPokemonType }> = ({ item }: { item: MyPokemonType }) => {
     const pokemonColor = getColorByPokemonType({ type: item.type });
     const bgStyles = { backgroundColor: pokemonColor, ...styles.bgStyles };
 

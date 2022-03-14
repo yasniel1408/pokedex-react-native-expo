@@ -4,7 +4,7 @@ import { UserInitialStateType, UserType } from '../../types';
 export const userSlice: Slice = createSlice({
     name: 'user',
     initialState: {
-        user: {} as UserType | {},
+        user: {} as UserType,
         loggedIn: false as boolean,
         loading: false as boolean,
         error: '' as string,

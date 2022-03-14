@@ -1,26 +1,32 @@
-import React from 'react';
-import { View, Text, TextInput, Button } from 'react-native';
+import React, { FC } from 'react';
+import {
+    View,
+    Text,
+    TextInput,
+    Button,
+    NativeTouchEvent,
+    NativeSyntheticEvent,
+} from 'react-native';
 import { useFormik } from 'formik';
-import * as Yup from 'yup';
+import * as yup from 'yup';
 import styles from './styles';
 import { UserAuthenticationType } from '../../../types';
 import Error from '../../../components/Error/Error';
 
-const initialValues: UserAuthenticationType = {
-    username: '',
-    password: '',
-};
+const AccountScreenLoginForm: FC = () => {
+    const initialValues: UserAuthenticationType = {
+        username: 'as',
+        password: 'as',
+    };
 
-const AccountScreenLoginForm = () => {
-    const { handleSubmit, values, setFieldValue, errors } = useFormik<UserAuthenticationType>({
+    const LoginSchema = yup.object().shape({
+        username: yup.string().required('Required'),
+        password: yup.string().min(2, 'Too Short!').max(10, 'Too Long!').required('Required'),
+    });
+    const { handleSubmit, handleChange, handleBlur, values, setFieldValue, errors } = useFormik({
         initialValues,
-        onSubmit: ({ username, password }: UserAuthenticationType): void => {
-            console.log('EVIADO...', username, password);
-        },
-        validationSchema: Yup.object({
-            username: Yup.string().required('Username is required'),
-            password: Yup.string().required('Password is required'),
-        }),
+        onSubmit: (data: any) => alert(`Username:, Password:`),
+        validationSchema: () => LoginSchema,
     });
 
     return (
@@ -31,8 +37,9 @@ const AccountScreenLoginForm = () => {
                     placeholder="Username"
                     style={styles.input}
                     autoCapitalize="none"
+                    onChangeText={handleChange('username')}
+                    onBlur={handleBlur('username')}
                     value={values.username}
-                    onChangeText={(text) => setFieldValue('username', text)}
                 />
                 <Error error={errors.username} />
             </View>
@@ -42,12 +49,18 @@ const AccountScreenLoginForm = () => {
                     style={styles.input}
                     autoCapitalize="none"
                     secureTextEntry
+                    onChangeText={handleChange('password')}
+                    onBlur={handleBlur('password')}
                     value={values.password}
-                    onChangeText={(text) => setFieldValue('password', text)}
                 />
                 <Error error={errors.password} />
             </View>
-            <Button title="Login" onPress={() => handleSubmit()} />
+            <Button
+                title="Login"
+                onPress={
+                    handleSubmit as unknown as (ev: NativeSyntheticEvent<NativeTouchEvent>) => void
+                }
+            />
         </View>
     );
 };

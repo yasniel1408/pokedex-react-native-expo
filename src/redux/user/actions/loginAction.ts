@@ -15,6 +15,8 @@ export const loginAction = createAsyncThunk(
             // api call
             if (username === user.username && password === user.password) {
                 dispatch(login(user));
+            } else {
+                dispatch(setError('Invalid username or password'));
             }
         } catch (error: any) {
             dispatch(setError(error.response.data));

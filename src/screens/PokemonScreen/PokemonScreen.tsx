@@ -1,6 +1,6 @@
 import { ScrollView, TouchableOpacity, View } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import React, { useEffect, useLayoutEffect } from 'react';
+import React, { FC, useEffect, useLayoutEffect } from 'react';
 import useGetPokemonById from '../../redux/pokemon/hooks/useGetPokemonById';
 import Error from '../../components/Error/Error';
 import Loading from '../../components/Loading/Loading';
@@ -9,7 +9,10 @@ import PokemonScreenType from './components/PokemonScreenType';
 import styles from './styles';
 import PokemonScreenStats from './components/PokemonScreenStats';
 
-const PokemonScreen = ({
+const PokemonScreen: FC<{
+    navigation: any;
+    route: any;
+}> = ({
     navigation,
     route: {
         params: { id },

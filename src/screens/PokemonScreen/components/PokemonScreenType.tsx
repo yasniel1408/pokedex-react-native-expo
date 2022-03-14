@@ -1,11 +1,11 @@
 import { Text, View } from 'react-native';
-import React from 'react';
+import React, { FC } from 'react';
 import useGetPokemonById from '../../../redux/pokemon/hooks/useGetPokemonById';
 import styles from './styles';
 import capitalizeString from '../../../utils/capitalize';
 import getColorByPokemonType from '../../../utils/getColorByPokemonType';
 
-const PokemonScreenType = () => {
+const PokemonScreenType: FC = () => {
     const {
         currentPokemon: { types },
     } = useGetPokemonById();

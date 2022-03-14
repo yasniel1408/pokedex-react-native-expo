@@ -1,11 +1,11 @@
 import { Text, View } from 'react-native';
-import React from 'react';
+import React, { FC } from 'react';
 import useGetPokemonById from '../../../redux/pokemon/hooks/useGetPokemonById';
 import capitalizeString from '../../../utils/capitalize';
 import styles from './styles';
 import { colors } from '../../../utils/colors';
 
-const PokemonScreenStats = () => {
+const PokemonScreenStats: FC = () => {
     const {
         currentPokemon: { stats },
     } = useGetPokemonById();

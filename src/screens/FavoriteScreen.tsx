@@ -1,8 +1,8 @@
 import { StyleSheet, Text, View } from 'react-native';
-import React from 'react';
+import React, { FC } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-const FavoriteScreen = () => {
+const FavoriteScreen: FC = () => {
     return (
         <SafeAreaView>
             <Text>Favorite</Text>

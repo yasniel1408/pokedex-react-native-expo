@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { PokedexScreen } from '../screens';
 import PokemonScreen from '../screens/PokemonScreen/PokemonScreen';
 
 const Stack = createNativeStackNavigator();
 
-const PokedexNavigation = () => {
+const PokedexNavigation: FC = () => {
     return (
         <Stack.Navigator>
             <Stack.Screen

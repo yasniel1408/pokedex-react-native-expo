@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { FC, useEffect } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useGetPokemons } from '../../redux/pokemon/hooks';
 import PokedexScreenList from './components/PokedexScreenList';
 import Error from '../../components/Error/Error';
 
-const PokedexScreen = () => {
+const PokedexScreen: FC = () => {
     const { getPokemons, pokemons, error } = useGetPokemons();
 
     useEffect(() => {

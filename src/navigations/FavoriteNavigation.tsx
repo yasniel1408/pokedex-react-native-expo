@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { colors } from '../utils/colors';
 import { FavoriteScreen } from '../screens';
 
 const Stack = createNativeStackNavigator();
 
-const FavoriteNavigation = () => {
+const FavoriteNavigation: FC = () => {
     return (
         <Stack.Navigator>
             <Stack.Screen

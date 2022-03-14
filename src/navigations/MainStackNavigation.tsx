@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { Image } from 'react-native';
@@ -8,7 +8,7 @@ import AccountNavigation from './AccountNavigation';
 
 const Tab = createBottomTabNavigator();
 
-const MainStackNavigation = () => {
+const MainStackNavigation: FC = () => {
     return (
         <Tab.Navigator screenOptions={{ headerShown: false }}>
             <Tab.Screen

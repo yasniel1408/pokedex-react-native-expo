@@ -1,11 +1,11 @@
 import { FlatList, Platform, StyleSheet } from 'react-native';
-import React from 'react';
+import React, { FC } from 'react';
 import { MyPokemonType } from '../../../types';
 import PokedexScreenItem from './PokedexScreenItem';
 import { useGetPokemons } from '../../../redux/pokemon/hooks';
 import Loading from '../../../components/Loading/Loading';
 
-const PokedexScreenList = () => {
+const PokedexScreenList: FC = () => {
     const { loadMorePokemons, pokemons, loading } = useGetPokemons();
 
     return (

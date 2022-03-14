@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { colors } from '../utils/colors';
 import { AccountScreen } from '../screens';
 
 const Stack = createNativeStackNavigator();
 
-const AccountNavigation = () => {
+const AccountNavigation: FC = () => {
     return (
         <Stack.Navigator>
             <Stack.Screen

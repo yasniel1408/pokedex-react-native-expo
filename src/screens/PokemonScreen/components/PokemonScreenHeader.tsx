@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { View, SafeAreaView, Text, Image } from 'react-native';
 import useGetPokemonById from '../../../redux/pokemon/hooks/useGetPokemonById';
 import capitalizeString from '../../../utils/capitalize';
 import getColorByPokemonType from '../../../utils/getColorByPokemonType';
 import styles from './styles';
 
-const PokemonScreenHeader = () => {
+const PokemonScreenHeader: FC = () => {
     const { currentPokemon } = useGetPokemonById();
 
     const color = getColorByPokemonType({ type: currentPokemon?.types[0]?.type?.name });
