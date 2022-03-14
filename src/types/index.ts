@@ -5,3 +5,5 @@ export { default as ThunkAPIType } from './ThunkAPIType';
 export { default as ValidationErrorsType } from './ValidationErrorsType';
 export { default as SerializedErrorType } from './SerializedErrorType';
 export { default as MyPokemonType } from './MyPokemonType';
+export { default as UserType } from './UserType';
+export { default as UserInitialStateType } from './UserInitialStateType';

@@ -49,10 +49,10 @@ export const getPokemonByIdAction = createAsyncThunk(
 export const pokemonSlice: Slice = createSlice({
     name: 'pokemon',
     initialState: {
-        pokemons: [],
-        currentPokemon: null,
-        loading: false,
-        error: '',
+        pokemons: [] as MyPokemonType[],
+        currentPokemon: null as any,
+        loading: false as boolean,
+        error: '' as string,
     },
     reducers: {
         fetchPokemons: (state: PokemonInitialStateType) => {
