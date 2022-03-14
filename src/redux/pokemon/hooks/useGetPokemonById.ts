@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import { useCallback } from 'react';
 import { useAppDispatch } from './hooks';
 import { PokemonInitialStateType } from '../../../types';
-import { getPokemonByIdAction } from '../pokemonSlice';
+import { getPokemonByIdAction } from '../actions/getPokemonByIdAction';
 
 const useGetPokemonById = () => {
     const { currentPokemon, loading, error }: PokemonInitialStateType = useSelector(

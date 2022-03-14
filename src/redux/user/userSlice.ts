@@ -4,7 +4,7 @@ import { UserInitialStateType, UserType } from '../../types';
 export const userSlice: Slice = createSlice({
     name: 'user',
     initialState: {
-        user: {} as UserType,
+        user: {} as UserType | {},
         loggedIn: false as boolean,
         loading: false as boolean,
         error: '' as string,
@@ -14,9 +14,15 @@ export const userSlice: Slice = createSlice({
             state.loading = true;
             state.error = '';
         },
-        setUser: (state: UserInitialStateType, action: PayloadAction<UserType>) => {
+        login: (state: UserInitialStateType, action: PayloadAction<UserType>) => {
             state.user = action.payload;
             state.loading = false;
+            state.loggedIn = true;
+        },
+        logout: (state: UserInitialStateType) => {
+            state.user = {};
+            state.loading = false;
+            state.loggedIn = false;
         },
         setError: (state: UserInitialStateType, action: PayloadAction<any>) => {
             state.error = action.payload.message;
@@ -26,6 +32,6 @@ export const userSlice: Slice = createSlice({
 
 const { actions, reducer } = userSlice;
 
-export const { fetchUser, setUser, setCurrentUser, setError } = actions;
+export const { fetchUser, login, setCurrentUser, setError } = actions;
 
 export default reducer;
