@@ -70,6 +70,8 @@ const AccountScreenLoginForm: FC = () => {
                 )}
             </Formik>
             <Error error={error} />
+            <Text>test username: yasniel</Text>
+            <Text>test password: 123456</Text>
         </View>
     );
 };
