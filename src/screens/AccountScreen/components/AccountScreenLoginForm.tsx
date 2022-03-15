@@ -16,7 +16,7 @@ import { colors } from '../../../utils/colors';
 import { useAuth } from '../../../redux/user/hooks';
 
 const AccountScreenLoginForm: FC = () => {
-    const { login, user, loading, error } = useAuth();
+    const { login, loading, error } = useAuth();
 
     const initialValues: UserAuthenticationType = {
         username: '',
@@ -29,7 +29,7 @@ const AccountScreenLoginForm: FC = () => {
     });
 
     return (
-        <View>
+        <View style={styles.container}>
             <Text style={styles.title}>Sign In</Text>
             <Formik
                 initialValues={initialValues}

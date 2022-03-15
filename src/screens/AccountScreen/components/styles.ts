@@ -1,6 +1,10 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
+    container: {
+        marginRight: 12,
+        marginLeft: 12,
+    },
     title: {
         textAlign: 'center',
         fontSize: 28,
@@ -9,15 +13,24 @@ const styles = StyleSheet.create({
         marginBottom: 15,
     },
     input: {
-        height: 45,
-        margin: 12,
+        height: 50,
+        marginTop: 16,
+        marginBottom: 7,
         borderWidth: 1,
         padding: 10,
         borderRadius: 5,
     },
+    text: {
+        height: 50,
+        marginTop: 10,
+        marginBottom: 10,
+        borderWidth: 1,
+        padding: 10,
+        borderRadius: 5,
+        fontSize: 15,
+    },
     containerBtn: {
-        marginRight: 12,
-        marginLeft: 12,
+        marginTop: 12,
         borderRadius: 5,
     },
 });

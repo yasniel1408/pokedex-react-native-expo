@@ -1,14 +1,21 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { Image } from 'react-native';
 import FavoriteNavigation from './FavoriteNavigation';
 import PokedexNavigation from './PokedexNavigation';
 import AccountNavigation from './AccountNavigation';
+import { useAuth } from '../redux/user/hooks';
 
 const Tab = createBottomTabNavigator();
 
 const MainStackNavigation: FC = () => {
+    const { getLocalStorageData } = useAuth();
+
+    useEffect(() => {
+        getLocalStorageData();
+    }, [getLocalStorageData]);
+
     return (
         <Tab.Navigator screenOptions={{ headerShown: false }}>
             <Tab.Screen

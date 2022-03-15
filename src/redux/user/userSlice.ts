@@ -25,7 +25,7 @@ export const userSlice: Slice = createSlice({
             state.loggedIn = false;
         },
         setError: (state: UserInitialStateType, action: PayloadAction<any>) => {
-            state.error = action.payload.message;
+            state.error = action.payload;
         },
     },
 });
