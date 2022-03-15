@@ -8,6 +8,8 @@ import PokemonScreenType from './components/PokemonScreenType';
 import styles from './styles';
 import PokemonScreenStats from './components/PokemonScreenStats';
 import { useGetPokemonById } from '../../redux/pokemon/hooks';
+import PokemonScreenFavorite from './components/PokemonScreenFavorite';
+import { useAuth } from '../../redux/user/hooks';
 
 const PokemonScreen: FC<{
     navigation: any;
@@ -21,9 +23,11 @@ const PokemonScreen: FC<{
     navigation: any;
     route: any;
 }) => {
+    const { loggedIn } = useAuth();
+
     useLayoutEffect(() => {
         navigation.setOptions({
-            headerRight: () => null,
+            headerRight: () => loggedIn && <PokemonScreenFavorite id={id} />,
             headerLeft: () => (
                 <Icon
                     name="arrow-left"
@@ -34,7 +38,7 @@ const PokemonScreen: FC<{
                 />
             ),
         });
-    }, [navigation]);
+    }, [id, loggedIn, navigation]);
 
     const { getPokemonById, currentPokemon, loading, error } = useGetPokemonById();
 

@@ -6,6 +6,7 @@ export const pokemonSlice: Slice = createSlice({
     name: 'pokemon',
     initialState: {
         pokemons: [] as MyPokemonType[],
+        favorites: [] as MyPokemonType[],
         currentPokemon: null as any,
         loading: false as boolean,
         error: '' as string,
@@ -25,12 +26,11 @@ export const pokemonSlice: Slice = createSlice({
             state.loading = false;
         },
         setFavorite: (state: PokemonInitialStateType, action: PayloadAction<number>) => {
-            // const newArrPokes: any[] = state.pokemons;
-            // eslint-disable-next-line max-len
-            // const index = newArrPokes.findIndex(({ id }: { id: number }) => id === action.payload);
-            // if (index >= 0) {
-            //     newArrPokes[index].favorite = !newArrPokes[index].favorite;
-            // }
+            const idPokemon: number = action.payload;
+            const pokemon: MyPokemonType | undefined = state.pokemons?.find(
+                ({ id }: { id: number }) => id === idPokemon,
+            );
+            if (pokemon) state.favorites = [...state.favorites, pokemon];
         },
         setError: (state: PokemonInitialStateType, action: PayloadAction<any>) => {
             state.error = action.payload.message;
