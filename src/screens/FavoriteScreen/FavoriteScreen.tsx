@@ -1,10 +1,11 @@
 import { Text } from 'react-native';
 import React, { FC, useEffect } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useFavorite } from '../redux/pokemon/hooks';
+import { useFavorite } from '../../redux/pokemon/hooks';
+import FavoriteScreenList from './components/FavoriteScreenList';
 
 const FavoriteScreen: FC = () => {
-    const { getLocalStorageData, favorites } = useFavorite();
+    const { getLocalStorageData } = useFavorite();
 
     useEffect(() => {
         getLocalStorageData();
@@ -12,7 +13,7 @@ const FavoriteScreen: FC = () => {
 
     return (
         <SafeAreaView>
-            <Text>{JSON.stringify(favorites)}</Text>
+            <FavoriteScreenList />
         </SafeAreaView>
     );
 };

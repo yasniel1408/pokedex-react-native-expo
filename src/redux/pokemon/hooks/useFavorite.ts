@@ -38,9 +38,21 @@ const useFavorite = () => {
         [dispatch, favorites, pokemons, saveDataAtLocalStorage],
     );
 
+    const removeAsFavorite = useCallback(
+        ({ id: idPokemon }) => {
+            const newArrayFavorites: MyPokemonType[] = favorites?.filter(
+                ({ id }: { id: number }) => id !== idPokemon,
+            );
+            saveDataAtLocalStorage({ data: newArrayFavorites });
+            dispatch(setFavorites(newArrayFavorites));
+        },
+        [dispatch, favorites, saveDataAtLocalStorage],
+    );
+
     return {
         getLocalStorageData,
         markAsFavorite,
+        removeAsFavorite,
         favorites,
     };
 };
