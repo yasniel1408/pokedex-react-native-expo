@@ -3,7 +3,7 @@ import { useCallback, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../../../hooks/hooks';
 import useLocalStorage from '../../../hooks/useLocalStorage';
-import { UserInitialStateType, UserType } from '../../../types';
+import { UserInitialStateType } from '../../../types';
 import { loginAction } from '../actions/loginAction';
 import { logout as logoutAction } from '../userSlice';
 
@@ -25,7 +25,6 @@ const useAuth = () => {
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        console.log(user);
         loggedIn && saveDataAtLocalStorage({ data: user });
     }, [loggedIn, saveDataAtLocalStorage, user]);
 
