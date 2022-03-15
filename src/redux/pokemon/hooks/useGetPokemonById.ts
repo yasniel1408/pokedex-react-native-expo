@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { useCallback } from 'react';
-import { useAppDispatch } from './hooks';
+import { useAppDispatch } from '../../../hooks/hooks';
 import { PokemonInitialStateType } from '../../../types';
 import { getPokemonByIdAction } from '../actions/getPokemonByIdAction';
 

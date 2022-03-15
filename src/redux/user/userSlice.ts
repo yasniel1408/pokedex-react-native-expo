@@ -32,6 +32,6 @@ export const userSlice: Slice = createSlice({
 
 const { actions, reducer } = userSlice;
 
-export const { fetchUser, login, setCurrentUser, setError } = actions;
+export const { fetchUser, login, logout, setError } = actions;
 
 export default reducer;

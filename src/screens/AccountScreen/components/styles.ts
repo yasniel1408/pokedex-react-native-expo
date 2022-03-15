@@ -9,17 +9,16 @@ const styles = StyleSheet.create({
         marginBottom: 15,
     },
     input: {
-        height: 50,
+        height: 45,
         margin: 12,
         borderWidth: 1,
         padding: 10,
         borderRadius: 5,
     },
-    container: {
-        flex: 1,
-    },
-    fild: {
-        margin: '0 10',
+    containerBtn: {
+        marginRight: 12,
+        marginLeft: 12,
+        borderRadius: 5,
     },
 });
 export default styles;

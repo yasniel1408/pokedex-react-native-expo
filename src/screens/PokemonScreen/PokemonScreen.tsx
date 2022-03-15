@@ -1,13 +1,13 @@
-import { ScrollView, TouchableOpacity, View } from 'react-native';
+import { ScrollView, View } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import React, { FC, useEffect, useLayoutEffect } from 'react';
-import useGetPokemonById from '../../redux/pokemon/hooks/useGetPokemonById';
 import Error from '../../components/Error/Error';
 import Loading from '../../components/Loading/Loading';
 import PokemonScreenHeader from './components/PokemonScreenHeader';
 import PokemonScreenType from './components/PokemonScreenType';
 import styles from './styles';
 import PokemonScreenStats from './components/PokemonScreenStats';
+import { useGetPokemonById } from '../../redux/pokemon/hooks';
 
 const PokemonScreen: FC<{
     navigation: any;

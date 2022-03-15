@@ -1,14 +1,12 @@
 import React, { FC } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useSelector } from 'react-redux';
-import { UserInitialStateType } from '../../types';
 import AccountScreenUserData from './components/AccountScreenUserData';
 import AccountScreenLoginForm from './components/AccountScreenLoginForm';
+import { useAuth } from '../../redux/user/hooks';
 
 const AccountScreen: FC = () => {
-    const { loggedIn }: UserInitialStateType = useSelector(
-        ({ user }: { user: UserInitialStateType }) => user,
-    );
+    const { loggedIn } = useAuth();
+
     return (
         <SafeAreaView>
             {loggedIn ? <AccountScreenUserData /> : <AccountScreenLoginForm />}
