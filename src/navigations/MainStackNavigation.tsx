@@ -17,7 +17,7 @@ const MainStackNavigation: FC = () => {
     }, [getLocalStorageData]);
 
     return (
-        <Tab.Navigator screenOptions={{ headerShown: false }}>
+        <Tab.Navigator screenOptions={{ headerShown: false }} initialRouteName="PokedexTab">
             <Tab.Screen
                 name="FavoriteTab"
                 component={FavoriteNavigation}
