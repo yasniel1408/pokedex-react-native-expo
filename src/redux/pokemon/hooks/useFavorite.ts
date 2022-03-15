@@ -2,8 +2,8 @@ import { useCallback, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../../../hooks/hooks';
 import useLocalStorage from '../../../hooks/useLocalStorage';
-import { PokemonInitialStateType } from '../../../types';
-import { markAFavorite, setFavorites } from '../pokemonSlice';
+import { MyPokemonType, PokemonInitialStateType } from '../../../types';
+import { setFavorites } from '../pokemonSlice';
 
 const useFavorite = () => {
     const {
@@ -17,30 +17,29 @@ const useFavorite = () => {
     } = useLocalStorage({
         key: '@FAVORITES',
     });
-    const { favorites }: PokemonInitialStateType = useSelector(
+    const { favorites, pokemons }: PokemonInitialStateType = useSelector(
         ({ pokemon }: { pokemon: PokemonInitialStateType }) => pokemon,
     );
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        saveDataAtLocalStorage({ data: favorites });
-    }, [favorites, saveDataAtLocalStorage]);
-
-    useEffect(() => {
-        dispatch(setFavorites(dataLocalStorage));
+        if (dataLocalStorage) dispatch(setFavorites(dataLocalStorage));
     }, [dataLocalStorage, dispatch]);
 
     const markAsFavorite = useCallback(
-        ({ id }) => {
-            dispatch(markAFavorite(id));
+        ({ id: idPokemon }) => {
+            const pokemon: MyPokemonType | undefined = pokemons?.find(
+                ({ id }: { id: number }) => id === idPokemon,
+            );
+            const newArrayFavorites = [...favorites, pokemon];
+            saveDataAtLocalStorage({ data: newArrayFavorites });
+            dispatch(setFavorites(newArrayFavorites));
         },
-        [dispatch],
+        [dispatch, favorites, pokemons, saveDataAtLocalStorage],
     );
 
     return {
-        saveDataAtLocalStorage,
         getLocalStorageData,
-        dataLocalStorage,
         markAsFavorite,
         favorites,
     };

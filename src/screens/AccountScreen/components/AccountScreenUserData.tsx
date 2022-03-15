@@ -1,11 +1,13 @@
 import React, { FC } from 'react';
 import { View, Text, Button, NativeTouchEvent, NativeSyntheticEvent } from 'react-native';
+import { useFavorite } from '../../../redux/pokemon/hooks';
 import { useAuth } from '../../../redux/user/hooks';
 import { colors } from '../../../utils/colors';
 import styles from './styles';
 
 const AccountScreenUserData: FC = () => {
     const { logout, user } = useAuth();
+    const { favorites } = useFavorite();
 
     return (
         <View style={styles.container}>
@@ -13,7 +15,7 @@ const AccountScreenUserData: FC = () => {
             <Text style={styles.text}>Last Name: {user.lastName}</Text>
             <Text style={styles.text}>Username: {user.username}</Text>
             <Text style={styles.text}>Email: {user.email}</Text>
-            <Text style={styles.text}>Total Favoritos: 0</Text>
+            <Text style={styles.text}>Total Favoritos: {favorites.length}</Text>
 
             <View style={styles.containerBtn}>
                 <Button

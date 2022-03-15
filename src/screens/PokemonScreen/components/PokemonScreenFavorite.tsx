@@ -3,9 +3,19 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import { useFavorite } from '../../../redux/pokemon/hooks';
 
 const PokemonScreenFavorite: FC<{ id: number }> = ({ id }: { id: number }) => {
-    const { markAsFavorite } = useFavorite();
+    const { markAsFavorite, favorites } = useFavorite();
 
-    return <Icon name="heart" color="#fff" size={20} onPress={() => markAsFavorite({ id })} />;
+    const isFavorite: boolean = favorites?.some(({ id: idFav }) => idFav === id);
+
+    return (
+        <Icon
+            name="heart"
+            color="#fff"
+            solid={isFavorite}
+            size={20}
+            onPress={() => !isFavorite && markAsFavorite({ id })}
+        />
+    );
 };
 
 export default PokemonScreenFavorite;

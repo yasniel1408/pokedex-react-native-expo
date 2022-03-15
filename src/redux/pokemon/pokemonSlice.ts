@@ -28,13 +28,6 @@ export const pokemonSlice: Slice = createSlice({
         setFavorites: (state: PokemonInitialStateType, action: PayloadAction<MyPokemonType[]>) => {
             state.favorites = action.payload;
         },
-        markAFavorite: (state: any, action: PayloadAction<number>) => {
-            const idPokemon: number = action.payload;
-            const pokemon: MyPokemonType | undefined = state.pokemons?.find(
-                ({ id }: { id: number }) => id === idPokemon,
-            );
-            state.favorites = [...state.favorites, pokemon];
-        },
         setError: (state: PokemonInitialStateType, action: PayloadAction<any>) => {
             state.error = action.payload.message;
         },
@@ -43,13 +36,6 @@ export const pokemonSlice: Slice = createSlice({
 
 const { actions, reducer } = pokemonSlice;
 
-export const {
-    fetchPokemons,
-    setPokemons,
-    setCurrentPokemons,
-    setFavorites,
-    markAFavorite,
-    setError,
-} = actions;
+export const { fetchPokemons, setPokemons, setCurrentPokemons, setFavorites, setError } = actions;
 
 export default reducer;
